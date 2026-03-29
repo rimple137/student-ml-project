@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Performance Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 Student Performance Predictor</h1>
+        <form method="post">
+            <label for="hours">Enter Study Hours:</label>
+            <input type="number" step="0.5" min="0" max="12" name="hours" required>
+            <button type="submit">Predict</button>
+        </form>
+        <h2>{{ prediction }}</h2>
+    </div>
+</body>
+</html>
