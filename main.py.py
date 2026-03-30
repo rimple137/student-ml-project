@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+import numpy as np
 data = pd.read_csv("students.csv")
 
 print(data.head())
@@ -17,7 +18,10 @@ X_train, X_test, y_train, y_test = train_test_split(
 model = LinearRegression()
 model.fit(X_train, y_train)
 predictions = model.predict(X_test)
-print(predictions)
+predictions=np.array(predictions)
+predictions=(np.clip(predictions,0,100))
+final=float(predictions[0])
+print(final)
 
 results = pd.DataFrame({
     "Actual": y_test,
@@ -40,9 +44,15 @@ hours = float(input("Enter study hours: "))
 
 # Convert into proper format
 new_data = [[hours]]
-
 # Predict
 prediction = model.predict(new_data)
+prediction=np.clip(prediction,0,100)
+prediction = float(prediction[0])
+
+
+
+
+
 
 # Show result
-print("Predicted Marks:", prediction[0])
+print("Predicted Marks:", prediction)
